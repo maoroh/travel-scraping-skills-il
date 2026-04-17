@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ישרוטל אגמים אילת – תוצאות חיפוש</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0a2342 0%, #1a5276 60%, #1abc9c 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      color: #1a1a2e;
+    }
+
+    .card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(120deg, #0a2342, #1a6fa8);
+      color: #fff;
+      padding: 2rem 2.2rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .hotel-icon {
+      font-size: 3rem;
+      line-height: 1;
+    }
+    .header h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .header .meta {
+      font-size: 0.95rem;
+      opacity: 0.82;
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .header .meta span::before {
+      margin-left: 0.3rem;
+    }
+
+    /* Best deal banner */
+    .best-deal {
+      background: linear-gradient(90deg, #1abc9c, #16a085);
+      color: #fff;
+      padding: 0.75rem 2.2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Table */
+    .table-wrap {
+      padding: 1.8rem 2.2rem 2.2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    thead tr {
+      background: #f0f4f8;
+      color: #4a5568;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    thead th {
+      padding: 0.75rem 1rem;
+      text-align: right;
+      font-weight: 600;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #e8edf2;
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f7fafc; }
+    tbody tr.highlight { background: #e8fdf5; }
+    tbody tr.highlight:hover { background: #d4f8ec; }
+
+    td {
+      padding: 0.95rem 1rem;
+      vertical-align: middle;
+    }
+
+    .rank {
+      font-weight: 700;
+      color: #a0aec0;
+      font-size: 0.9rem;
+      width: 2rem;
+      text-align: center;
+    }
+    .rank.first { color: #f6ad55; font-size: 1.1rem; }
+
+    .room-name {
+      font-weight: 600;
+      color: #2d3748;
+    }
+    .board-badge {
+      display: inline-block;
+      margin-top: 0.3rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .bb { background: #ebf8ff; color: #2b6cb0; }
+    .hb { background: #fef3c7; color: #92400e; }
+
+    .price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a5276;
+      white-space: nowrap;
+    }
+    tr.highlight .price { color: #0f7960; }
+
+    .savings {
+      font-size: 0.82rem;
+      color: #718096;
+      white-space: nowrap;
+    }
+    .savings .amount { color: #e53e3e; font-weight: 600; }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #e8edf2;
+      padding: 1.1rem 2.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      background: #f7fafc;
+      font-size: 0.85rem;
+      color: #718096;
+    }
+    .footer a {
+      background: #1a6fa8;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.55rem 1.3rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+    .footer a:hover { background: #0a2342; }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="header">
+      <div class="hotel-icon">🏝️</div>
+      <div>
+        <h1>ישרוטל אגמים אילת</h1>
+        <div class="meta">
+          <span>📅 20–22 אפריל 2026</span>
+          <span>🌙 2 לילות</span>
+          <span>👥 2 מבוגרים</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-deal">
+      ✅ נמצאו 8 אופציות — ממוינות מהזול ליקר
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>חדר</th>
+            <th>מחיר לזוג</th>
+            <th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr class="highlight">
+            <td class="rank first">⭐</td>
+            <td>
+              <div class="room-name">חדר עם נוף לבריכה</div>
+              <span class="board-badge bb">לינה וא. בוקר</span>
+            </td>
+            <td class="price">₪1,594</td>
+            <td class="savings"><span class="amount">₪281</span> חיסכון</td>
+          </tr>
+
+          <tr>
+            <td class="rank">2</td>
+            <td>
+              <div class="room-name">חדר עם נוף לבריכה</div>
+              <span class="board-badge hb">חצי פנסיון</span>
+            </td>
+            <td class="price">₪2,104</td>
+            <td class="savings"><span class="amount">₪371</span> חיסכון</td>
+          </tr>
+
+          <tr>
+            <td class="rank">3</td>
+            <td>
+              <div class="room-name">חדר משפחה עם נוף לבריכה</div>
+              <span class="board-badge bb">לינה וא. בוקר</span>
+            </td>
+            <td class="price">₪2,189</td>
+            <td class="savings"><span class="amount">₪386</span> חיסכון</td>
+          </tr>
+
+          <tr>
+            <td class="rank">3</td>
+            <td>
+              <div class="room-name">חדר מרפסת על המים</div>
+              <span class="board-badge bb">לינה וא. בוקר</span>
+            </td>
+            <td class="price">₪2,189</td>
+            <td class="savings"><span class="amount">₪386</span> חיסכון</td>
+          </tr>
+
+          <tr>
+            <td class="rank">5</td>
+            <td>
+              <div class="room-name">חדר על המים</div>
+              <span class="board-badge bb">לינה וא. בוקר</span>
+            </td>
+            <td class="price">₪2,359</td>
+            <td class="savings"><span class="amount">₪416</span> חיסכון</td>
+          </tr>
+
+          <tr>
+            <td class="rank">6</td>
+            <td>
+              <div class="room-name">חדר משפחה עם נוף לבריכה</div>
+              <span class="board-badge hb">חצי פנסיון</span>
+            </td>
+            <td class="price">₪2,699</td>
+            <td class="savings"><span class="amount">₪476</span> חיסכון</td>
+          </tr>
+
+          <tr>
+            <td class="rank">6</td>
+            <td>
+              <div class="room-name">חדר מרפסת על המים</div>
+              <span class="board-badge hb">חצי פנסיון</span>
+            </td>
+            <td class="price">₪2,699</td>
+            <td class="savings"><span class="amount">₪476</span> חיסכון</td>
+          </tr>
+
+          <tr>
+            <td class="rank">8</td>
+            <td>
+              <div class="room-name">חדר על המים</div>
+              <span class="board-badge hb">חצי פנסיון</span>
+            </td>
+            <td class="price">₪2,869</td>
+            <td class="savings"><span class="amount">₪506</span> חיסכון</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span>עודכן: 17 אפריל 2026 | מחירים כוללים מע"מ | מחיר SunClub זהה למחיר האתר</span>
+      <a href="https://www.isrotel.co.il" target="_blank">להזמנה באתר ישרוטל ←</a>
+    </div>
+
+  </div>
+</body>
+</html>
