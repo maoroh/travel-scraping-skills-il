@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>גומא כנרת — חיפוש חופשה מאי 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f4c8a 0%, #1a6bb5 50%, #0d3d6e 100%);
+      min-height: 100vh;
+      padding: 24px 16px;
+      color: #1a2a3a;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    
+    /* Header */
+    .header {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      text-align: center;
+    }
+    .header h1 { font-size: 2rem; color: #0f4c8a; margin-bottom: 6px; }
+    .header .subtitle { color: #5a7a9a; font-size: 1.05rem; }
+    .header .meta { margin-top: 12px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .meta-chip {
+      background: #e8f0fa; color: #0f4c8a; border-radius: 20px;
+      padding: 4px 14px; font-size: 0.9rem; font-weight: 600;
+    }
+
+    /* Summary table */
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .card h2 { color: #0f4c8a; margin-bottom: 18px; font-size: 1.2rem; border-bottom: 2px solid #e8f0fa; padding-bottom: 10px; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    th { background: #0f4c8a; color: white; padding: 10px 12px; text-align: right; font-size: 0.9rem; }
+    th:first-child { border-radius: 8px 0 0 8px; }
+    th:last-child { border-radius: 0 8px 8px 0; }
+    td { padding: 12px; border-bottom: 1px solid #f0f4f8; font-size: 0.95rem; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f7faff; }
+    
+    .row-best td { background: #fffbe6 !important; }
+    .row-best:hover td { background: #fff8d6 !important; }
+    .rank { font-weight: 700; color: #888; font-size: 1.1rem; text-align: center; }
+    .arrow { color: #aaa; font-size: 0.8rem; }
+    .price { font-weight: 700; font-size: 1.05rem; color: #0f4c8a; }
+    .sun-price { color: #e67e00; }
+    
+    .board-tag {
+      background: #e8f4ff; color: #0f4c8a;
+      border-radius: 12px; padding: 3px 10px;
+      font-size: 0.82rem; font-weight: 600;
+      white-space: nowrap;
+    }
+    .savings-badge {
+      background: #e8f9e8; color: #1a7a1a;
+      border-radius: 12px; padding: 4px 10px;
+      font-size: 0.82rem; font-weight: 700;
+      text-align: center; display: inline-block; white-space: nowrap;
+    }
+    .badge-best {
+      background: #ffd700; color: #7a5500;
+      border-radius: 12px; padding: 2px 8px;
+      font-size: 0.78rem; font-weight: 700;
+      margin-right: 6px;
+    }
+
+    /* Date sections */
+    .date-section {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      overflow: hidden;
+    }
+    .section-best { border: 2px solid #ffd700; }
+    .date-header {
+      background: linear-gradient(90deg, #0f4c8a, #1a6bb5);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .section-best .date-header { background: linear-gradient(90deg, #b8860b, #daa520); }
+    .date-title { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .date-min-price { font-size: 1.1rem; font-weight: 700; opacity: 0.95; }
+    .nights-badge {
+      background: rgba(255,255,255,0.25);
+      border-radius: 12px; padding: 2px 10px;
+      font-size: 0.82rem;
+    }
+    .star { font-size: 1rem; }
+    .rank-num { background: rgba(255,255,255,0.25); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+    
+    .detail-table { margin: 0; }
+    .detail-table th { background: #f0f6ff; color: #0f4c8a; }
+    .row-cheapest td { background: #f0fff0; }
+    .row-cheapest:hover td { background: #e0ffe0 !important; }
+    
+    .section-title { color: white; font-size: 1.1rem; font-weight: 700; margin: 24px 0 14px; }
+    
+    .footer {
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.82rem;
+      margin-top: 20px;
+      padding-bottom: 8px;
+    }
+    
+    @media (max-width: 600px) {
+      .header h1 { font-size: 1.4rem; }
+      td, th { padding: 8px 6px; font-size: 0.82rem; }
+      .date-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>🌊 גומא כנרת</h1>
+    <div class="subtitle">חיפוש חופשה — מאי 2026</div>
+    <div class="meta">
+      <span class="meta-chip">📅 2 לילות</span>
+      <span class="meta-chip">👥 2 מבוגרים</span>
+      <span class="meta-chip">🔍 7 טווחי תאריכים זמינים</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📊 סיכום — ממוין מהזול ליקר</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>תאריכים</th>
+          <th>חדר זול ביותר</th>
+          <th>בסיס</th>
+          <th>מחיר אתר</th>
+          <th>Sun Club</th>
+          <th>חיסכון</th>
+        </tr>
+      </thead>
+      <tbody>
+    <tr class="row-best">
+      <td class="rank">#1</td>
+      <td><strong>11/05 (שני)</strong><br><span class="arrow">↓</span><br><strong>13/05 (רביעי)</strong></td>
+      <td>חדר ארבל <span class="badge-best">הכי זול!</span></td>
+      <td><span class="board-tag">לינה+בוקר</span></td>
+      <td class="price">₪1,504</td>
+      <td class="price sun-price">₪1,425</td>
+      <td><span class="savings-badge">-43%<br>₪1,137</span></td>
+    </tr>
+    <tr class="">
+      <td class="rank">#2</td>
+      <td><strong>09/05 (שבת)</strong><br><span class="arrow">↓</span><br><strong>11/05 (שני)</strong></td>
+      <td>חדר גליל</td>
+      <td><span class="board-tag">לינה+בוקר</span></td>
+      <td class="price">₪2,216</td>
+      <td class="price sun-price">₪2,100</td>
+      <td><span class="savings-badge">-5%<br>₪118</span></td>
+    </tr>
+    <tr class="">
+      <td class="rank">#3</td>
+      <td><strong>25/05 (שני)</strong><br><span class="arrow">↓</span><br><strong>27/05 (רביעי)</strong></td>
+      <td>חדר גליל סופריור</td>
+      <td><span class="board-tag">לינה+בוקר</span></td>
+      <td class="price">₪2,321</td>
+      <td class="price sun-price">₪2,198</td>
+      <td><span class="savings-badge">-5%<br>₪123</span></td>
+    </tr>
+    <tr class="">
+      <td class="rank">#4</td>
+      <td><strong>29/05 (שישי)</strong><br><span class="arrow">↓</span><br><strong>31/05 (ראשון)</strong></td>
+      <td>חדר גליל סופריור</td>
+      <td><span class="board-tag">לינה+בוקר</span></td>
+      <td class="price">₪2,417</td>
+      <td class="price sun-price">₪2,290</td>
+      <td><span class="savings-badge">-24%<br>₪764</span></td>
+    </tr>
+    <tr class="">
+      <td class="rank">#5</td>
+      <td><strong>28/05 (חמישי)</strong><br><span class="arrow">↓</span><br><strong>30/05 (שבת)</strong></td>
+      <td>חדר גליל סופריור</td>
+      <td><span class="board-tag">לינה+בוקר</span></td>
+      <td class="price">₪2,806</td>
+      <td class="price sun-price">₪2,658</td>
+      <td><span class="savings-badge">-24%<br>₪887</span></td>
+    </tr>
+    <tr class="">
+      <td class="rank">#6</td>
+      <td><strong>14/05 (חמישי)</strong><br><span class="arrow">↓</span><br><strong>16/05 (שבת)</strong></td>
+      <td>חדר גליל</td>
+      <td><span class="board-tag">לינה+בוקר</span></td>
+      <td class="price">₪2,841</td>
+      <td class="price sun-price">₪2,692</td>
+      <td><span class="savings-badge">-19%<br>₪679</span></td>
+    </tr>
+    <tr class="">
+      <td class="rank">#7</td>
+      <td><strong>15/05 (שישי)</strong><br><span class="arrow">↓</span><br><strong>17/05 (ראשון)</strong></td>
+      <td>חדר גליל סופריור</td>
+      <td><span class="board-tag">לינה+בוקר</span></td>
+      <td class="price">₪2,952</td>
+      <td class="price sun-price">₪2,796</td>
+      <td><span class="savings-badge">-5%<br>₪156</span></td>
+    </tr></tbody>
+    </table>
+  </div>
+
+  <div class="section-title">🏨 פירוט לפי תאריכים — ממוין מהזול ליקר</div>
+  
+    <div class="date-section section-best">
+      <div class="date-header">
+        <div class="date-title">
+          <span class="star">★ הדיל הכי טוב</span>
+          11/05 (שני) &nbsp;→&nbsp; 13/05 (רביעי)
+          <span class="nights-badge">2 לילות</span>
+        </div>
+        <div class="date-min-price">החל מ-<strong>₪1,504</strong></div>
+      </div>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>חדר</th><th>בסיס</th><th>מחיר אתר</th><th>Sun Club</th><th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-cheapest">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪1,504</td>
+          <td class="price sun-price">₪1,425</td>
+          <td><span class="savings-badge">-43% / ₪1,137</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪1,599</td>
+          <td class="price sun-price">₪1,514</td>
+          <td><span class="savings-badge">-43% / ₪1,207</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪1,733</td>
+          <td class="price sun-price">₪1,642</td>
+          <td><span class="savings-badge">-43% / ₪1,309</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪1,733</td>
+          <td class="price sun-price">₪1,642</td>
+          <td><span class="savings-badge">-43% / ₪1,309</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪1,881</td>
+          <td class="price sun-price">₪1,782</td>
+          <td><span class="savings-badge">-43% / ₪1,420</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪1,975</td>
+          <td class="price sun-price">₪1,871</td>
+          <td><span class="savings-badge">-43% / ₪1,491</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סטודיו</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,031</td>
+          <td class="price sun-price">₪1,924</td>
+          <td><span class="savings-badge">-43% / ₪1,534</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪2,109</td>
+          <td class="price sun-price">₪1,998</td>
+          <td><span class="savings-badge">-43% / ₪1,593</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪2,109</td>
+          <td class="price sun-price">₪1,998</td>
+          <td><span class="savings-badge">-43% / ₪1,593</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סטודיו</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪2,407</td>
+          <td class="price sun-price">₪2,281</td>
+          <td><span class="savings-badge">-43% / ₪1,818</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div class="date-section ">
+      <div class="date-header">
+        <div class="date-title">
+          <span class="rank-num">#2</span>
+          09/05 (שבת) &nbsp;→&nbsp; 11/05 (שני)
+          <span class="nights-badge">2 לילות</span>
+        </div>
+        <div class="date-min-price">החל מ-<strong>₪2,216</strong></div>
+      </div>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>חדר</th><th>בסיס</th><th>מחיר אתר</th><th>Sun Club</th><th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-cheapest">
+          <td>חדר גליל</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,216</td>
+          <td class="price sun-price">₪2,100</td>
+          <td><span class="savings-badge">-5% / ₪118</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,310</td>
+          <td class="price sun-price">₪2,189</td>
+          <td><span class="savings-badge">-5% / ₪123</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,508</td>
+          <td class="price sun-price">₪2,376</td>
+          <td><span class="savings-badge">-5% / ₪133</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,665</td>
+          <td class="price sun-price">₪2,524</td>
+          <td><span class="savings-badge">-5% / ₪141</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪2,843</td>
+          <td class="price sun-price">₪2,694</td>
+          <td><span class="savings-badge">-5% / ₪151</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,889</td>
+          <td class="price sun-price">₪2,737</td>
+          <td><span class="savings-badge">-5% / ₪153</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,935</td>
+          <td class="price sun-price">₪2,780</td>
+          <td><span class="savings-badge">-5% / ₪155</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪2,937</td>
+          <td class="price sun-price">₪2,783</td>
+          <td><span class="savings-badge">-5% / ₪156</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,135</td>
+          <td class="price sun-price">₪2,970</td>
+          <td><span class="savings-badge">-5% / ₪166</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,292</td>
+          <td class="price sun-price">₪3,118</td>
+          <td><span class="savings-badge">-5% / ₪174</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,516</td>
+          <td class="price sun-price">₪3,331</td>
+          <td><span class="savings-badge">-5% / ₪186</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,562</td>
+          <td class="price sun-price">₪3,374</td>
+          <td><span class="savings-badge">-5% / ₪188</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סטודיו</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,707</td>
+          <td class="price sun-price">₪3,512</td>
+          <td><span class="savings-badge">-5% / ₪196</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סטודיו</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪4,334</td>
+          <td class="price sun-price">₪4,106</td>
+          <td><span class="savings-badge">-5% / ₪229</span></td>
+        </tr>
+        <tr class="">
+          <td>סוויטת גומא</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪8,494</td>
+          <td class="price sun-price">₪8,047</td>
+          <td><span class="savings-badge">-5% / ₪448</span></td>
+        </tr>
+        <tr class="">
+          <td>סוויטת גומא</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪9,121</td>
+          <td class="price sun-price">₪8,641</td>
+          <td><span class="savings-badge">-5% / ₪481</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div class="date-section ">
+      <div class="date-header">
+        <div class="date-title">
+          <span class="rank-num">#3</span>
+          25/05 (שני) &nbsp;→&nbsp; 27/05 (רביעי)
+          <span class="nights-badge">2 לילות</span>
+        </div>
+        <div class="date-min-price">החל מ-<strong>₪2,321</strong></div>
+      </div>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>חדר</th><th>בסיס</th><th>מחיר אתר</th><th>Sun Club</th><th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-cheapest">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,321</td>
+          <td class="price sun-price">₪2,198</td>
+          <td><span class="savings-badge">-5% / ₪123</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,508</td>
+          <td class="price sun-price">₪2,376</td>
+          <td><span class="savings-badge">-5% / ₪133</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,665</td>
+          <td class="price sun-price">₪2,524</td>
+          <td><span class="savings-badge">-5% / ₪141</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,889</td>
+          <td class="price sun-price">₪2,737</td>
+          <td><span class="savings-badge">-5% / ₪153</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,889</td>
+          <td class="price sun-price">₪2,737</td>
+          <td><span class="savings-badge">-5% / ₪153</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪2,948</td>
+          <td class="price sun-price">₪2,792</td>
+          <td><span class="savings-badge">-5% / ₪156</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,135</td>
+          <td class="price sun-price">₪2,970</td>
+          <td><span class="savings-badge">-5% / ₪166</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,292</td>
+          <td class="price sun-price">₪3,118</td>
+          <td><span class="savings-badge">-5% / ₪174</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סטודיו</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,337</td>
+          <td class="price sun-price">₪3,162</td>
+          <td><span class="savings-badge">-5% / ₪177</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,516</td>
+          <td class="price sun-price">₪3,331</td>
+          <td><span class="savings-badge">-5% / ₪186</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,516</td>
+          <td class="price sun-price">₪3,331</td>
+          <td><span class="savings-badge">-5% / ₪186</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סטודיו</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,964</td>
+          <td class="price sun-price">₪3,756</td>
+          <td><span class="savings-badge">-5% / ₪210</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div class="date-section ">
+      <div class="date-header">
+        <div class="date-title">
+          <span class="rank-num">#4</span>
+          29/05 (שישי) &nbsp;→&nbsp; 31/05 (ראשון)
+          <span class="nights-badge">2 לילות</span>
+        </div>
+        <div class="date-min-price">החל מ-<strong>₪2,417</strong></div>
+      </div>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>חדר</th><th>בסיס</th><th>מחיר אתר</th><th>Sun Club</th><th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-cheapest">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,417</td>
+          <td class="price sun-price">₪2,290</td>
+          <td><span class="savings-badge">-24% / ₪764</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,666</td>
+          <td class="price sun-price">₪2,526</td>
+          <td><span class="savings-badge">-24% / ₪843</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,845</td>
+          <td class="price sun-price">₪2,696</td>
+          <td><span class="savings-badge">-24% / ₪900</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,845</td>
+          <td class="price sun-price">₪2,696</td>
+          <td><span class="savings-badge">-24% / ₪900</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪2,964</td>
+          <td class="price sun-price">₪2,808</td>
+          <td><span class="savings-badge">-24% / ₪937</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,213</td>
+          <td class="price sun-price">₪3,044</td>
+          <td><span class="savings-badge">-24% / ₪1,016</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,393</td>
+          <td class="price sun-price">₪3,214</td>
+          <td><span class="savings-badge">-24% / ₪1,072</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,393</td>
+          <td class="price sun-price">₪3,214</td>
+          <td><span class="savings-badge">-24% / ₪1,072</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div class="date-section ">
+      <div class="date-header">
+        <div class="date-title">
+          <span class="rank-num">#5</span>
+          28/05 (חמישי) &nbsp;→&nbsp; 30/05 (שבת)
+          <span class="nights-badge">2 לילות</span>
+        </div>
+        <div class="date-min-price">החל מ-<strong>₪2,806</strong></div>
+      </div>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>חדר</th><th>בסיס</th><th>מחיר אתר</th><th>Sun Club</th><th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-cheapest">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,806</td>
+          <td class="price sun-price">₪2,658</td>
+          <td><span class="savings-badge">-24% / ₪887</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,021</td>
+          <td class="price sun-price">₪2,862</td>
+          <td><span class="savings-badge">-24% / ₪955</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,201</td>
+          <td class="price sun-price">₪3,032</td>
+          <td><span class="savings-badge">-24% / ₪1,011</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,201</td>
+          <td class="price sun-price">₪3,032</td>
+          <td><span class="savings-badge">-24% / ₪1,011</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,399</td>
+          <td class="price sun-price">₪3,220</td>
+          <td><span class="savings-badge">-24% / ₪1,074</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,614</td>
+          <td class="price sun-price">₪3,424</td>
+          <td><span class="savings-badge">-24% / ₪1,142</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,793</td>
+          <td class="price sun-price">₪3,594</td>
+          <td><span class="savings-badge">-24% / ₪1,199</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,793</td>
+          <td class="price sun-price">₪3,594</td>
+          <td><span class="savings-badge">-24% / ₪1,199</span></td>
+        </tr>
+        <tr class="">
+          <td>סוויטת גומא</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪7,685</td>
+          <td class="price sun-price">₪7,280</td>
+          <td><span class="savings-badge">-24% / ₪2,427</span></td>
+        </tr>
+        <tr class="">
+          <td>סוויטת גומא</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪8,277</td>
+          <td class="price sun-price">₪7,842</td>
+          <td><span class="savings-badge">-24% / ₪2,615</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div class="date-section ">
+      <div class="date-header">
+        <div class="date-title">
+          <span class="rank-num">#6</span>
+          14/05 (חמישי) &nbsp;→&nbsp; 16/05 (שבת)
+          <span class="nights-badge">2 לילות</span>
+        </div>
+        <div class="date-min-price">החל מ-<strong>₪2,841</strong></div>
+      </div>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>חדר</th><th>בסיס</th><th>מחיר אתר</th><th>Sun Club</th><th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-cheapest">
+          <td>חדר גליל</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,841</td>
+          <td class="price sun-price">₪2,692</td>
+          <td><span class="savings-badge">-19% / ₪679</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,921</td>
+          <td class="price sun-price">₪2,768</td>
+          <td><span class="savings-badge">-19% / ₪698</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,017</td>
+          <td class="price sun-price">₪2,858</td>
+          <td><span class="savings-badge">-19% / ₪720</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,150</td>
+          <td class="price sun-price">₪2,984</td>
+          <td><span class="savings-badge">-19% / ₪752</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,341</td>
+          <td class="price sun-price">₪3,165</td>
+          <td><span class="savings-badge">-19% / ₪797</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,341</td>
+          <td class="price sun-price">₪3,165</td>
+          <td><span class="savings-badge">-19% / ₪797</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,471</td>
+          <td class="price sun-price">₪3,288</td>
+          <td><span class="savings-badge">-19% / ₪829</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,551</td>
+          <td class="price sun-price">₪3,364</td>
+          <td><span class="savings-badge">-19% / ₪848</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,647</td>
+          <td class="price sun-price">₪3,455</td>
+          <td><span class="savings-badge">-19% / ₪870</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,780</td>
+          <td class="price sun-price">₪3,581</td>
+          <td><span class="savings-badge">-19% / ₪902</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,970</td>
+          <td class="price sun-price">₪3,761</td>
+          <td><span class="savings-badge">-19% / ₪948</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,970</td>
+          <td class="price sun-price">₪3,761</td>
+          <td><span class="savings-badge">-19% / ₪948</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div class="date-section ">
+      <div class="date-header">
+        <div class="date-title">
+          <span class="rank-num">#7</span>
+          15/05 (שישי) &nbsp;→&nbsp; 17/05 (ראשון)
+          <span class="nights-badge">2 לילות</span>
+        </div>
+        <div class="date-min-price">החל מ-<strong>₪2,952</strong></div>
+      </div>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>חדר</th><th>בסיס</th><th>מחיר אתר</th><th>Sun Club</th><th>חיסכון</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-cheapest">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪2,952</td>
+          <td class="price sun-price">₪2,796</td>
+          <td><span class="savings-badge">-5% / ₪156</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,125</td>
+          <td class="price sun-price">₪2,961</td>
+          <td><span class="savings-badge">-5% / ₪166</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,282</td>
+          <td class="price sun-price">₪3,110</td>
+          <td><span class="savings-badge">-5% / ₪174</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,487</td>
+          <td class="price sun-price">₪3,304</td>
+          <td><span class="savings-badge">-5% / ₪185</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">לינה+בוקר</span></td>
+          <td class="price">₪3,487</td>
+          <td class="price sun-price">₪3,304</td>
+          <td><span class="savings-badge">-5% / ₪185</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר גליל סופריור</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,636</td>
+          <td class="price sun-price">₪3,444</td>
+          <td><span class="savings-badge">-5% / ₪192</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,809</td>
+          <td class="price sun-price">₪3,609</td>
+          <td><span class="savings-badge">-5% / ₪202</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר ארבל נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪3,966</td>
+          <td class="price sun-price">₪3,758</td>
+          <td><span class="savings-badge">-5% / ₪210</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת פנורמה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪4,171</td>
+          <td class="price sun-price">₪3,952</td>
+          <td><span class="savings-badge">-5% / ₪221</span></td>
+        </tr>
+        <tr class="">
+          <td>חדר כנרת סופיריור – נוף לבריכה</td>
+          <td><span class="board-tag">חצי פנסיון</span></td>
+          <td class="price">₪4,171</td>
+          <td class="price sun-price">₪3,952</td>
+          <td><span class="savings-badge">-5% / ₪221</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+
+  <div class="footer">
+    נוצר ב-08/05/2026 · מחירים כוללים מע&quot;מ · כפוף לזמינות בזמן ההזמנה
+  </div>
+
+</div>
+</body>
+</html>
