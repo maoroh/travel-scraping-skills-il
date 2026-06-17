@@ -16,13 +16,33 @@ A collection of [Claude Code](https://claude.ai/code) skills for fetching live p
 
 ## Installation
 
-**Claude Code CLI:**
+### Option 1 — npx (recommended)
+
+```bash
+# List available skills in this repo
+npx skills add maoroh/hotels-scraping-skills --list
+
+# Install a specific skill
+npx skills add maoroh/hotels-scraping-skills --skill isrotel-offerings
+
+# Install to Claude Code specifically
+npx skills add maoroh/hotels-scraping-skills -a claude-code --skill isrotel-offerings
+```
+
+### Option 2 — Claude Code CLI
+
 ```bash
 claude plugin marketplace add maoroh/hotels-scraping-skills
 claude plugin install isrotel-offerings@marketplace
 ```
 
-**Claude Desktop:** Customize → Skills → + → `maoroh/hotels-scraping-skills` → Sync → Install
+### Option 3 — Claude Desktop
+
+Customize → Skills → **+** → enter `maoroh/hotels-scraping-skills` → Sync → Install
+
+### Option 4 — Manual
+
+Copy the `.claude/skills/isrotel-offerings/` folder into your own repo under `.claude/skills/`.
 
 **Requirements:** `curl` and `python3` must be available in your shell.
 
