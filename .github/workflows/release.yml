@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/attest-build-provenance@v4
+        with:
+          subject-path: |
+            **/SKILL.md
+            **/SKILL_HE.md
+            **/metadata.json
