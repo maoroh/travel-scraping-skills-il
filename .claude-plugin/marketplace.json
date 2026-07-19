@@ -1,0 +1,20 @@
+{
+  "name": "travel-scraping-skills-il",
+  "description": "Skills for fetching live pricing and availability from Israeli travel booking systems, with no API key or account required.",
+  "owner": {
+    "name": "Maor Ohana"
+  },
+  "plugins": [
+    {
+      "name": "isrotel-deals-finder",
+      "source": "./",
+      "description": "Fetch live Isrotel hotel room packages and pricing directly from the booking API, with no API key or account required. Covers 25 properties across Eilat, the Dead Sea, Mitzpe Ramon, Jerusalem, Tel Aviv and the north.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Maor Ohana"
+      },
+      "category": "travel",
+      "tags": ["hotels", "isrotel", "travel", "booking", "pricing", "israel"]
+    }
+  ]
+}

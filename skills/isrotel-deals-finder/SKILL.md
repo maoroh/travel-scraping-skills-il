@@ -17,6 +17,20 @@ allowed-tools: 'Bash(curl:*) Bash(python3:*) Bash(bash:*)'
 compatibility: >-
   Requires network access to isrotel.co.il, plus curl and python3 in the shell.
   No API key or account needed. Works with Claude Code, Claude.ai, and Cursor.
+metadata:
+  version: "1.0.0"
+  category: "travel"
+  author: "Maor Ohana"
+  display_name:
+    he: "מאתר מבצעי ישרוטל"
+    en: "Isrotel Deals Finder"
+  display_description:
+    he: "שליפת חבילות אירוח ומחירים בזמן אמת ישירות ממערכת ההזמנות של ישרוטל, ללא צורך במפתח API או בחשבון. השתמשו כשמבקשים זמינות חדרים, מחירים, חבילות או מבצעים בישרוטל, או כשמזכירים שם מלון כמו רויאל ביץ', בראשית, כרמים או לגונה. מכסה 25 מלונות באילת, ים המלח, מצפה רמון, ירושלים, תל אביב והצפון, ומציג מחיר אתר, מחיר מועדון חוג השמש וההנחה מול מחיר המחירון. לא מיועד לרשתות אחרות כמו דן, פתאל או לאונרדו, ולא לביצוע הזמנה בפועל."
+    en: "Fetch live hotel room packages and pricing directly from Isrotel's booking API using cURL, with no API key or account required. Use when the user asks about Isrotel availability, room prices, packages, deals or promotions, or names an Isrotel property such as Royal Beach, Beresheet, Cramim, Orient or Lagoona. Covers 25 properties across Eilat, the Dead Sea, Mitzpe Ramon, Jerusalem, Tel Aviv and the north, returning web prices, Sun Club member prices and savings versus rack rate. Do NOT use for other Israeli chains such as Dan, Fattal or Leonardo, or for completing an actual booking."
+  tags:
+    he: ["מלונות", "ישרוטל", "נסיעות", "הזמנות", "תמחור", "אילת", "ישראל"]
+    en: ["hotels", "isrotel", "travel", "booking", "pricing", "eilat", "israel"]
+  supported_agents: ["claude-code", "cursor", "github-copilot", "windsurf", "opencode", "codex", "gemini-cli"]
 ---
 
 # Isrotel Deals Finder

@@ -1,0 +1,8 @@
+{
+  "name": "isrotel-deals-finder",
+  "description": "Fetch live Isrotel hotel room packages and pricing directly from the booking API, with no API key or account required.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Maor Ohana"
+  }
+}

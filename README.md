@@ -35,7 +35,7 @@ npx skills add maoroh/travel-scraping-skills-il -a claude-code --skill isrotel-d
 
 ```bash
 claude plugin marketplace add maoroh/travel-scraping-skills-il
-claude plugin install isrotel-deals-finder@marketplace
+claude plugin install isrotel-deals-finder@travel-scraping-skills-il
 ```
 
 ### Option 3: Claude Desktop
