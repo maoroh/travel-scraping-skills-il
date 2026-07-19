@@ -1,8 +1,10 @@
-# hotels-scraping-skills
+# travel-scraping-skills-il
 
 A collection of [Claude Code](https://claude.ai/code) skills for fetching live pricing and availability from hotel chain booking systems, with no API key or account required.
 
 > **Status:** Early stage. Currently contains one skill (Isrotel). More hotel chains coming.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
@@ -10,7 +12,7 @@ A collection of [Claude Code](https://claude.ai/code) skills for fetching live p
 
 | Skill | Chain | Hotels Covered | Status |
 |-------|-------|----------------|--------|
-| [`isrotel-deals-finder`](.claude/skills/isrotel-deals-finder/) | [Isrotel](https://www.isrotel.co.il) | Royal Beach, Beresheet, Cramim, Goma, Alberto, Orient, Lagoona, and more | ✅ Active |
+| [`isrotel-deals-finder`](skills/isrotel-deals-finder/) | [Isrotel](https://www.isrotel.co.il) | Royal Beach, Beresheet, Cramim, Goma, Alberto, Orient, Lagoona, and more | ✅ Active |
 
 ---
 
@@ -20,29 +22,29 @@ A collection of [Claude Code](https://claude.ai/code) skills for fetching live p
 
 ```bash
 # List available skills in this repo
-npx skills add maoroh/hotels-scraping-skills --list
+npx skills add maoroh/travel-scraping-skills-il --list
 
 # Install a specific skill
-npx skills add maoroh/hotels-scraping-skills --skill isrotel-deals-finder
+npx skills add maoroh/travel-scraping-skills-il --skill isrotel-deals-finder
 
 # Install to Claude Code specifically
-npx skills add maoroh/hotels-scraping-skills -a claude-code --skill isrotel-deals-finder
+npx skills add maoroh/travel-scraping-skills-il -a claude-code --skill isrotel-deals-finder
 ```
 
 ### Option 2: Claude Code CLI
 
 ```bash
-claude plugin marketplace add maoroh/hotels-scraping-skills
+claude plugin marketplace add maoroh/travel-scraping-skills-il
 claude plugin install isrotel-deals-finder@marketplace
 ```
 
 ### Option 3: Claude Desktop
 
-Customize → Skills → **+** → enter `maoroh/hotels-scraping-skills` → Sync → Install
+Customize → Skills → **+** → enter `maoroh/travel-scraping-skills-il` → Sync → Install
 
 ### Option 4: Manual
 
-Copy the `.claude/skills/isrotel-deals-finder/` folder into your own repo under `.claude/skills/`.
+Copy the `skills/isrotel-deals-finder/` folder into your own project under `.claude/skills/`.
 
 **Requirements:** `curl` and `python3` must be available in your shell.
 
@@ -76,4 +78,4 @@ Once installed, just ask Claude naturally:
 
 ## Contributing
 
-Pull requests welcome, especially for adding new hotel chains. Each skill lives in its own folder under `.claude/skills/`.
+Pull requests welcome, especially for adding new hotel chains. Each skill lives in its own folder under `skills/`, the layout the Agent Skills spec expects.
