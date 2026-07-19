@@ -18,7 +18,7 @@ compatibility: >-
   Requires network access to isrotel.co.il, plus curl and python3 in the shell.
   No API key or account needed. Works with Claude Code, Claude.ai, and Cursor.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   category: "travel"
   author: "Maor Ohana"
   display_name:

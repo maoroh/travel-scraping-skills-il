@@ -9,7 +9,7 @@
       "name": "isrotel-deals-finder",
       "source": "./",
       "description": "Fetch live Isrotel hotel room packages and pricing directly from the booking API, with no API key or account required. Covers 25 properties across Eilat, the Dead Sea, Mitzpe Ramon, Jerusalem, Tel Aviv and the north.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Maor Ohana"
       },
