@@ -1,6 +1,6 @@
 # hotels-scraping-skills
 
-A collection of [Claude Code](https://claude.ai/code) skills for fetching live pricing and availability from hotel chain booking systems — no MCP server or API key required.
+A collection of [Claude Code](https://claude.ai/code) skills for fetching live pricing and availability from hotel chain booking systems, with no API key or account required.
 
 > **Status:** Early stage. Currently contains one skill (Isrotel). More hotel chains coming.
 
@@ -10,39 +10,39 @@ A collection of [Claude Code](https://claude.ai/code) skills for fetching live p
 
 | Skill | Chain | Hotels Covered | Status |
 |-------|-------|----------------|--------|
-| [`isrotel-offerings`](.claude/skills/isrotel-offerings/) | [Isrotel](https://www.isrotel.co.il) | Royal Beach, Beresheet, Cramim, Goma, Alberto, Orient, Lagoona, and more | ✅ Active |
+| [`isrotel-deals-finder`](.claude/skills/isrotel-deals-finder/) | [Isrotel](https://www.isrotel.co.il) | Royal Beach, Beresheet, Cramim, Goma, Alberto, Orient, Lagoona, and more | ✅ Active |
 
 ---
 
 ## Installation
 
-### Option 1 — npx (recommended)
+### Option 1: npx (recommended)
 
 ```bash
 # List available skills in this repo
 npx skills add maoroh/hotels-scraping-skills --list
 
 # Install a specific skill
-npx skills add maoroh/hotels-scraping-skills --skill isrotel-offerings
+npx skills add maoroh/hotels-scraping-skills --skill isrotel-deals-finder
 
 # Install to Claude Code specifically
-npx skills add maoroh/hotels-scraping-skills -a claude-code --skill isrotel-offerings
+npx skills add maoroh/hotels-scraping-skills -a claude-code --skill isrotel-deals-finder
 ```
 
-### Option 2 — Claude Code CLI
+### Option 2: Claude Code CLI
 
 ```bash
 claude plugin marketplace add maoroh/hotels-scraping-skills
-claude plugin install isrotel-offerings@marketplace
+claude plugin install isrotel-deals-finder@marketplace
 ```
 
-### Option 3 — Claude Desktop
+### Option 3: Claude Desktop
 
 Customize → Skills → **+** → enter `maoroh/hotels-scraping-skills` → Sync → Install
 
-### Option 4 — Manual
+### Option 4: Manual
 
-Copy the `.claude/skills/isrotel-offerings/` folder into your own repo under `.claude/skills/`.
+Copy the `.claude/skills/isrotel-deals-finder/` folder into your own repo under `.claude/skills/`.
 
 **Requirements:** `curl` and `python3` must be available in your shell.
 
@@ -62,18 +62,18 @@ Once installed, just ask Claude naturally:
 
 > **Please read before using.**
 
-1. **Unofficial tool** — This project is not affiliated with, endorsed by, or connected to Isrotel or any other hotel chain. Hotel names and trademarks belong to their respective owners.
+1. **Unofficial tool**: This project is not affiliated with, endorsed by, or connected to Isrotel or any other hotel chain. Hotel names and trademarks belong to their respective owners.
 
-2. **Personal use only** — This skill is intended for personal, non-commercial use (e.g. finding a vacation deal for yourself). Do not use it for bulk data collection, competitive intelligence, or any commercial purpose.
+2. **Personal use only**: This skill is intended for personal, non-commercial use (e.g. finding a vacation deal for yourself). Do not use it for bulk data collection, competitive intelligence, or any commercial purpose.
 
-3. **Rate limiting** — The skill fetches data directly from hotel booking APIs. Please avoid running excessive parallel requests or automating repeated searches, to avoid placing unnecessary load on their servers.
+3. **Rate limiting**: The skill fetches data directly from hotel booking APIs. Please avoid running excessive parallel requests or automating repeated searches, to avoid placing unnecessary load on their servers.
 
-4. **No warranty on pricing** — Prices and availability are fetched live and may differ from what you see on the hotel's website due to timing, caching, or session-specific pricing. Always confirm on the official website before booking.
+4. **No warranty on pricing**: Prices and availability are fetched live and may differ from what you see on the hotel's website due to timing, caching, or session-specific pricing. Always confirm on the official website before booking.
 
-5. **Terms of service** — Use of this skill may be subject to the hotel chain's website terms of service. By using this skill, you accept responsibility for ensuring your use complies with applicable terms.
+5. **Terms of service**: Use of this skill may be subject to the hotel chain's website terms of service. By using this skill, you accept responsibility for ensuring your use complies with applicable terms.
 
 ---
 
 ## Contributing
 
-Pull requests welcome — especially for adding new hotel chains. Each skill lives in its own folder under `.claude/skills/`.
+Pull requests welcome, especially for adding new hotel chains. Each skill lives in its own folder under `.claude/skills/`.
